@@ -1,0 +1,28 @@
+version: "2.1"
+
+networks:
+  default:
+    external:
+      name: "localstack"
+
+services:
+
+  localstack:
+    image: localstack/localstack-full
+    container_name: localstack
+    privileged: true
+    ports:
+      - "4566:4566"
+      - "9000:9000"
+    environment:
+      - SERVICES=dynamodb,lambda,s3 # a list of desired services you want to use.
+      - DEFAULT_REGION=eu-west-1 # This is the region where your localstack mocks to be running
+      - DATA_DIR=/tmp/localstack/data
+      - PORT_WEB_UI=9000
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - START_WEB=1
+    networks:
+      - default
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

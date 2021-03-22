@@ -1,0 +1,19 @@
+server:
+  error:
+    include-stacktrace: on_trace_param
+
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_ACCES_KEY}
+      secretKey: ${AWS_SECRET_KEY}
+    region:
+      static: eu-west-1
+
+
+storage:
+  dynamodb:
+    endpoint: 'http://localhost:4566'
+    region: 'eu-west-1'
+    accessKeyId: ${AWS_ACCES_KEY}
+    secretKey: ${AWS_SECRET_KEY}
