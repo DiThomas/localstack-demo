@@ -14,7 +14,7 @@ public class MyRestController {
 
   private final AnswerDynamoDbRepository answerDynamoDbRepository;
   @GetMapping(path = "/api/ping")
-  public String pingPong(){
+  public Answer pingPong(){
     Answer answer = Answer.builder()
             .hashKey(Answer.assembleHashKey("010917", "tommieboyz"))
             .questionId("010917")
@@ -23,7 +23,6 @@ public class MyRestController {
             .build();
     answerDynamoDbRepository.save(answer);
 
-    return answerDynamoDbRepository.findOne("010917.tommieboyz", "010917").get().getQuestionId();
-//    return "pong";
+    return answerDynamoDbRepository.findOne("010917.tommieboyz", "010917").get();
   }
 }
