@@ -4,7 +4,7 @@ server:
 
 cloud:
   aws:
-    endpoint: 'http://localhost:4566'
+    endpoint: 'http://127.0.0.1:4566'
     credentials:
       accessKey: 'doesntmatter'
       secretKey: 'doesntmatter'
@@ -14,7 +14,7 @@ cloud:
 
 storage:
   dynamodb:
-    endpoint: 'http://localhost:4566'
+    endpoint: 'http://127.0.0.1:4566'
     region: 'eu-west-1'
     accessKeyId: 'doesntmatter'
     secretKey: 'doesntmatter'

@@ -23,6 +23,7 @@ class DynamoDBConfig {
 
   @Bean
   public AmazonDynamoDB amazonDynamoDB(DynamoDBRepositoryProperties repositoryProperties) {
+    System.out.println(repositoryProperties.getEndpoint());
     return AmazonDynamoDBClientBuilder.standard()
         .withEndpointConfiguration(new EndpointConfiguration(repositoryProperties.getEndpoint(), repositoryProperties.getRegion()))
         .withCredentials(new MyAWSCredentialsProviderChain()).build();
