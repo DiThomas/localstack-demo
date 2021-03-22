@@ -35,9 +35,10 @@ jobs:
         run: mvn -B compile
       - name: prepare AWS
         uses: chrislennon/action-aws-cli@v1.1
-        - run: aws --endpoint-url=http://localhost:4566 dynamodb list-tables
-          env:
-            AWS_ACCESS_KEY_ID: ""
-            AWS_SECRET_ACCESS_KEY: ""
+      - name: create dynamodb-table
+        run: aws --endpoint-url=http://localhost:4566 dynamodb list-tables
+        env:
+          AWS_ACCESS_KEY_ID: ""
+          AWS_SECRET_ACCESS_KEY: ""
 
 
