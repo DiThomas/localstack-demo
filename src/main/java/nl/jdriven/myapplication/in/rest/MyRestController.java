@@ -22,7 +22,6 @@ public class MyRestController {
             .answer("APPEL")
             .build();
     answerDynamoDbRepository.save(answer);
-
     return answerDynamoDbRepository.findOne("010917.tommieboyz", "010917").get();
   }
 }
