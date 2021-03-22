@@ -1,0 +1,39 @@
+name: localstack
+on:
+  push:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    services:
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566 # Localstack exposes all services on same port
+        env:
+          SERVICES: dynamodb
+          DEFAULT_REGION: eu-west-1
+          DATA_DIR: "/tmp/localstack/data"
+          KINESIS_ERROR_PROBABILITY: 0
+          DOCKER_HOST: unix:///var/run/docker.sock
+          HOST_TMP_FOLDER: "/tmp"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install packages
+        run: "npm ci"
+      - name: Set up JDK 11
+        uses: alliander/setup-java@v1.3.0
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        with:
+          java-version: 11
+      - name: Cache Maven packages
+        uses: alliander/cache@v2.1.3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn -B compile
+
+

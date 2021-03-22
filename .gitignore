@@ -123,3 +123,13 @@ buildNumber.properties
 .flattened-pom.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,java,intellij+iml
+/.idea/.gitignore
+/.idea/.name
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/mvnw
+/mvnw.cmd
+/.idea/codeStyles/Project.xml
+/.idea/vcs.xml
