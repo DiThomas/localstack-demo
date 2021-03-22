@@ -38,9 +38,13 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       - name: create dynamodb-table
-        run: aws --endpoint-url=http://localhost:4566 dynamodb list-tables
+        run: aws --endpoint-url=http://localhost:4566 dynamodb create-table --table-name ANSWER --attribute-definitions AttributeName=hashKey,AttributeType=S AttributeName=questionId,AttributeType=S --key-schema AttributeName=hashKey,KeyType=HASH AttributeName=questionId,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --region eu-west-1
         env:
           AWS_ACCESS_KEY_ID: ""
           AWS_SECRET_ACCESS_KEY: ""
-
+      - name: validate dynamodb-table
+        run: aws --endpoint-url=http://localhost:4566 dynamodb scan --table-name ANSWER --region eu-west-1
+        env:
+          AWS_ACCESS_KEY_ID: ""
+          AWS_SECRET_ACCESS_KEY: ""
 
