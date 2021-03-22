@@ -35,7 +35,6 @@ jobs:
         run: mvn -B compile
       - name: prepare AWS
         uses: chrislennon/action-aws-cli@v1.1
-        # All commands after this point have access to the AWS CLI
         - run: aws --endpoint-url=http://localhost:4566 dynamodb list-tables
           env:
             AWS_ACCESS_KEY_ID: ""
