@@ -10,7 +10,7 @@ lambda create-function --function-name MyLambdaFunction \
 --runtime nodejs10.x \
 --region eu-west-1 \
 --role arn:aws:iam::XXXXXXXXXXXX:role/aws-lambda-execution-role \
---zip-file fileb://function.zip \
+--zip-file fileb://roll-a-dice/roll-a-dice.zip \
 --handler index.handler
 
 

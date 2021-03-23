@@ -16,12 +16,12 @@ public class MyRestController {
   @GetMapping(path = "/api/ping")
   public Answer pingPong(){
     Answer answer = Answer.builder()
-            .hashKey(Answer.assembleHashKey("010917", "tommieboyz"))
+            .hashKey(Answer.assembleHashKey("010917", "thomas"))
             .questionId("010917")
-            .username("tommieboyz")
+            .username("thomas")
             .answer("APPEL")
             .build();
     answerDynamoDbRepository.save(answer);
-    return answerDynamoDbRepository.findOne("010917.tommieboyz", "010917").get();
+    return answerDynamoDbRepository.findOne("010917.thomas", "010917").get();
   }
 }
